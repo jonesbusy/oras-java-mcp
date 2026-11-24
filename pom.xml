@@ -45,7 +45,6 @@
   </distributionManagement>
 
   <properties>
-    <revision>0.1.0</revision>
     <changelist>-SNAPSHOT</changelist>
     <project.build.outputTimestamp>2026-01-01T00:00:00Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

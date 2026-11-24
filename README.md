@@ -70,7 +70,7 @@ jbang trust add https://repo.maven.apache.org/maven2/io/github/jonesbusy/
 **Claude Code**
 
 ```sh
-claude mcp add oras -- jbang --quiet oras-java-mcp@jonesbusy/oras-java-mcp
+claude mcp add oras -- jbang --quiet oras-java-mcp@jonesbusy
 ```
 
 **VS Code, Claude Desktop and other clients**
@@ -80,7 +80,7 @@ claude mcp add oras -- jbang --quiet oras-java-mcp@jonesbusy/oras-java-mcp
   "mcpServers": {
     "oras": {
       "command": "jbang",
-      "args": ["--quiet", "oras-java-mcp@jonesbusy/oras-java-mcp"]
+      "args": ["--quiet", "oras-java-mcp@jonesbusy"]
     }
   }
 }
@@ -141,7 +141,7 @@ Push an `x.y.z` tag on a green `main` commit. The [release workflow](.github/wor
 1. deploys the signed artifacts, including the `runner` uber jar, to Maven Central with [njord](https://github.com/maveniverse/njord)
 2. publishes the release-drafter draft and attaches the runner jar
 
-After the release, bump the version in [`jbang-catalog.json`](jbang-catalog.json) so the jbang alias serves it.
+After the release, bump the version in the [`jbang-catalog`](https://github.com/jonesbusy/jbang-catalog) repository so the `oras-java-mcp@jonesbusy` alias serves it.
 
 > [!IMPORTANT]
 > The release workflow needs the `CENTRAL_USERNAME`, `CENTRAL_PASSWORD`, `GPG_KEY` and `GPG_PASSPHRASE` repository secrets.

@@ -6,7 +6,7 @@ A read-only stdio MCP server for OCI registries. It is a single-module Quarkus a
 
 - `quarkus-mcp-server-stdio` provides the MCP protocol over stdin and stdout.
 - `quarkus-oras` provides a `land.oras.Registry` CDI bean (`@OrasRegistry("default")`) on top of `land.oras:oras-java-sdk`.
-- Quarkus packages the app as an uber jar (`target/oras-java-mcp-<version>-runner.jar`). The jar goes to Maven Central with the `runner` classifier, and users start it with jbang (`jbang-catalog.json`).
+- Quarkus packages the app as an uber jar (`target/oras-java-mcp-<version>-runner.jar`). The jar goes to Maven Central with the `runner` classifier, and users start it with jbang via `jonesbusy/jbang-catalog`.
 
 Layout (package `io.github.jonesbusy.oras.mcp`):
 
@@ -68,7 +68,7 @@ mvn verify -Dtest=none -Dsurefire.failIfNoSpecifiedTests=false -Dit.test=McpServ
 - `.github/workflows/build.yml` runs on pushes and PRs to `main`: pre-commit, then `mvn verify`, then upload of the runner jar.
 - `.github/workflows/release.yml` runs on an `x.y.z` tag. It deploys to Maven Central with njord (`-Prelease -Drevision=<tag> -Dchangelist= -DaltDeploymentRepository=sonatype-cp::njord:`), publishes the release-drafter draft and attaches the runner jar.
 - Versioning is CI-friendly (`${revision}${changelist}`), and `flatten-maven-plugin` resolves it in the deployed POM. Don't hard-code a version in `pom.xml`.
-- After a release, bump the version in the `jbang-catalog.json` `script-ref`.
+- After a release, bump the ORAS runner version in `jonesbusy/jbang-catalog/jbang-catalog.json`.
 - PR labels (`feature`, `bug`, `dependencies`, ...) feed the release-drafter categories in `.github/release-drafter.yml`.
 
 ## Documentation

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":configMigration",
+    ":semanticCommitsDisabled",
+    ":enablePreCommit",
+    "helpers:pinGitHubActionDigests",
+    "schedule:weekly"
+  ],
+  "labels": ["dependencies"],
+  "rebaseWhen": "conflicted",
+  "packageRules": [
+    {
+      "description": "Quarkus, the MCP server and quarkus-oras must stay on the same Quarkus line: update them together",
+      "matchManagers": ["maven"],
+      "matchPackageNames": ["io.quarkus.platform:**", "io.quarkus:**", "io.quarkiverse.mcp:**", "io.quarkiverse.oras:**"],
+      "groupName": "Quarkus stack"
+    },
+    {
+      "description": "quarkus-mcp-server 2.1.x is built on Quarkus 3.x: stay on Quarkus 3 until a release targets Quarkus 4",
+      "matchManagers": ["maven"],
+      "matchPackageNames": ["io.quarkus.platform:**", "io.quarkus:**"],
+      "allowedVersions": "<4"
+    },
+    {
+      "description": "quarkus-oras 0.9+ targets Quarkus 4: stay on 0.8.x while on Quarkus 3",
+      "matchManagers": ["maven"],
+      "matchPackageNames": ["io.quarkiverse.oras:**"],
+      "allowedVersions": "<0.9"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Container images used by Testcontainers in Java tests",
+      "managerFilePatterns": ["/^src/test/java/.+\\.java$/"],
+      "matchStrings": ["new GenericContainer<>\\(\"(?<depName>[^:\"]+):(?<currentValue>[^\"]+)\"\\)"],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "jbang version pinned in .sdkmanrc",
+      "managerFilePatterns": ["/^\\.sdkmanrc$/"],
+      "matchStrings": ["jbang=(?<currentValue>\\S+)"],
+      "depNameTemplate": "jbangdev/jbang",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.+)$"
+    }
+  ]
+}

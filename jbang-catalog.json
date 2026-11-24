@@ -1,0 +1,10 @@
+{
+  "catalogs": {},
+  "aliases": {
+    "oras-java-mcp": {
+      "script-ref": "https://repo.maven.apache.org/maven2/io/github/jonesbusy/oras-java-mcp/0.1.0/oras-java-mcp-0.1.0-runner.jar",
+      "description": "ORAS Java MCP: read-only stdio MCP server for OCI registries (use with --quiet)",
+      "java": "21+"
+    }
+  }
+}

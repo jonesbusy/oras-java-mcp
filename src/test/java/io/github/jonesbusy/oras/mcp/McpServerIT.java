@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 
-/** Starts the packaged runner jar and talks MCP to it over stdio, like an MCP client would. */
 class McpServerIT {
 
     private static final List<String> TOOLS = List.of(
@@ -48,7 +47,6 @@ class McpServerIT {
         assertThat(Path.of(runner)).exists();
         return McpAssured.newStdioClient()
                 .setCommand("java", "-jar", runner)
-                // The test registry is plain HTTP
                 .setEnvironment(Map.of("QUARKUS_ORAS_REGISTRIES_DEFAULT_SECURE", "false"))
                 .build()
                 .connect();

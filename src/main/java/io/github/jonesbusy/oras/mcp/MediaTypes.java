@@ -3,7 +3,6 @@ package io.github.jonesbusy.oras.mcp;
 import java.util.Locale;
 import java.util.Set;
 
-/** Media types the server needs to tell apart. */
 final class MediaTypes {
 
     static final String OCI_INDEX = "application/vnd.oci.image.index.v1+json";
@@ -19,7 +18,6 @@ final class MediaTypes {
 
     private MediaTypes() {}
 
-    /** Strip parameters (such as {@code charset}) and normalize case. */
     static String normalize(String mediaType) {
         if (mediaType == null) {
             return null;

@@ -353,7 +353,6 @@ public class OrasTools {
                 configContent);
     }
 
-    /** Pick the single index entry for an os/architecture[/variant] platform string. */
     static ManifestDescriptor select(Index index, String platform) {
         String[] parts = platform.trim().toLowerCase(Locale.ROOT).split("/");
         if (parts.length < 2 || parts.length > 3) {
@@ -452,8 +451,7 @@ public class OrasTools {
                         .onUnmappableCharacter(CodingErrorAction.REPORT)
                         .decode(ByteBuffer.wrap(bytes, 0, length - trim))
                         .toString();
-            } catch (CharacterCodingException e) {
-                // try with fewer trailing bytes
+            } catch (CharacterCodingException ignored) {
             }
         }
         throw new ToolCallException(

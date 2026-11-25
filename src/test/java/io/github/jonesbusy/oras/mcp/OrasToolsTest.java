@@ -15,7 +15,6 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Runs the tools against the zot registry that quarkus-oras starts as a dev service. */
 @QuarkusTest
 class OrasToolsTest {
 

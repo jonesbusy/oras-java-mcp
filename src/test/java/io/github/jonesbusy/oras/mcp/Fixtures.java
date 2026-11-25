@@ -18,7 +18,6 @@ import land.oras.ManifestDescriptor;
 import land.oras.Platform;
 import land.oras.Registry;
 
-/** Pushes the same small set of artifacts to any registry, for unit and integration tests. */
 final class Fixtures {
 
     static final String TEXT_ARTIFACT_TYPE = "application/vnd.example.text.v1";
@@ -27,19 +26,14 @@ final class Fixtures {
 
     final String host;
 
-    /** {@code <host>/artifacts/text:1.0}: one text/plain layer, with an SBOM attached as referrer. */
     final String textArtifact;
 
-    /** Digest of the text artifact manifest. */
     String textArtifactDigest;
 
-    /** Digest of the text layer. */
     String textLayerDigest;
 
-    /** {@code <host>/images/multi:1.0}: an index of linux/amd64 and linux/arm64/v8 image manifests. */
     final String multiPlatformImage;
 
-    /** Digest of the linux/amd64 image config. */
     String amd64ConfigDigest;
 
     Fixtures(String host) {
